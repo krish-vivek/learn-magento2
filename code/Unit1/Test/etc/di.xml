@@ -1,14 +1,16 @@
 <?xml version="1.0"?>
 <!--
 /** 
-* 
-* Copyright © Magento. All rights reserved. 
-* See COPYING.txt for license details. 
+ * 
+ * Copyright © Magento. All rights reserved. 
+ * See COPYING.txt for license details. 
 */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">    
+		xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
 	<preference for="Unit1\Test\Api\ProductRepositoryInterface" type="Magento\Catalog\Model\ProductRepository" />
+
 	<type name="Unit1\Test\MagentoU\Test">      
 		<arguments>            
 			<argument name="justAParameter" xsi:type="string">Hello world!</argument>            
@@ -17,4 +19,21 @@
 			</argument>         
 		</arguments> 
 	</type>
+
+	<type name="Magento\Catalog\Model\Product">        
+		<plugin name="afterPricePlugin" type="Unit1\Test\Plugin\AfterPricePlugin" sortOrder="1" disabled="false" />    
+	</type>
+
+	<type name="Magento\Theme\Block\Html\Footer">        
+		<plugin name="footerPlugin" type="Unit1\Test\Plugin\AfterFooterPlugin" sortOrder="2" disabled="false" />
+	</type>    
+
+	<type name="Magento\Theme\Block\Html\Breadcrumbs">        
+		<plugin name="aroundBreadcrumbsPlugin" type="Unit1\Test\Plugin\AroundBreadcrumbsPlugin" sortOrder="3" disabled="false" />    
+	</type>    
+
+	<type name="Magento\Theme\Block\Html\Breadcrumbs">        
+		<plugin name="beforeBreadcrumbsPlugin" type="Unit1\Test\Plugin\BeforeBreadcrumbsPlugin" sortOrder="4" disabled="false" />    
+	</type>
+
 </config>
