@@ -29,7 +29,6 @@ class LogPageOutput implements ObserverInterface
      * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     public function execute(\Magento\Framework\Event\Observer $observer) {
-        echo "sadfds";exit;
         $response = $observer->getEvent()->getData('response');
         $body = $response->getBody();
         $body = substr($body, 0, 1000);

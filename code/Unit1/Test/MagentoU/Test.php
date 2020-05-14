@@ -4,7 +4,7 @@
 * Copyright © Magento. All rights reserved. 
 * See COPYING.txt for license details. 
 */
-namespace Unit1\Test \MagentoU;
+namespace Unit1\Test\MagentoU;
 
 class Test {
 	protected $justAParameter; 
