@@ -5,8 +5,8 @@
 namespace SimplifiedMagento\FirstModule\Controller\Page;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\ResponseInterface;
-use SimplifiedMagento\FirstModule\NotMagento\PencilInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
+use SimplifiedMagento\FirstModule\Api\PencilInterface;
 
 class HelloWorld extends \Magento\Framework\App\Action\Action
 {
@@ -36,6 +36,10 @@ class HelloWorld extends \Magento\Framework\App\Action\Action
 		// TODO : Implement execute() method.
 		echo "Hello World".'<br>';
 
-		echo $this->pencilInterface->getPancilType();
+		echo $this->pencilInterface->getPancilType().'<br>';
+
+		echo get_class($this->productRepository);
+
+
 	}
 }
