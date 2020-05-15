@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:module:Unit1_CustomConfig:etc/custom_config.xsd">
-    <welcome_message store_id="1">Welcome USA customer!</welcome_message>
-    <welcome_message store_id="2">Welcome Canadian customer!</welcome_message>
-    <welcome_message store_id="3">Welcome EU customer!</welcome_message>
-</config>

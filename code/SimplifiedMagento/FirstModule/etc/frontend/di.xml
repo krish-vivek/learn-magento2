@@ -1,7 +1,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
-    <preference for="Magento\Catalog\Api\ProductRepositoryInterface"
-    	type="SimplifiedMagento\FirstModule\Model\CustomImplementation" />
+    <!--<preference for="Magento\Catalog\Api\ProductRepositoryInterface"
+    	type="SimplifiedMagento\FirstModule\Model\CustomImplementation" />-->
 
     <preference for="SimplifiedMagento\FirstModule\Api\PencilInterface"
     	type="SimplifiedMagento\FirstModule\Model\Pencil" />
@@ -11,5 +11,47 @@
 
     <preference for="SimplifiedMagento\FirstModule\Api\Size"
     	type="SimplifiedMagento\FirstModule\Model\Normal" />
+
+    <preference for="SimplifiedMagento\FirstModule\Api\Brightness"
+    	type="SimplifiedMagento\FirstModule\Model\Medium" />
+
+    <!--<type name="Magento\Catalog\Model\Product">
+        <plugin name="before_set_name"
+                type="SimplifiedMagento\FirstModule\Plugin\PluginSolution" sortOrder="10"/>
+    </type>-->
+    <type name="SimplifiedMagento\FirstModule\Controller\Page\HelloWorld">
+        <plugin name="plugin_on_execute"
+                type="SimplifiedMagento\FirstModule\Plugin\PluginSolution" sortOrder="10"/>
+
+        <plugin name="plugin2_on_execute"
+                type="SimplifiedMagento\FirstModule\Plugin\PluginSolution2" sortOrder="20"/>
+
+        <plugin name="plugin3_on_execute"
+                type="SimplifiedMagento\FirstModule\Plugin\PluginSolution3" sortOrder="30"/>
+    </type>
+
+    <type name="SimplifiedMagento\FirstModule\Model\Pencil">
+    	<arguments>
+    		<argument name="color" xsi:type="object">virtualType</argument>
+    		<argument name="size" xsi:type="object">SimplifiedMagento\FirstModule\Model\Big</argument>
+    	</arguments>
+    </type>
+
+    <virtualType name="virtualType" type="SimplifiedMagento\FirstModule\Model\Red">
+    	<arguments>
+    		<argument name="brightness" xsi:type="object">SimplifiedMagento\FirstModule\Model\High</argument>
+    	</arguments>
+    </virtualType>
+
+    <type name="SimplifiedMagento\FirstModule\Model\Student">
+    	<arguments>
+    		<argument name="name" xsi:type="string">Bob</argument>
+    		<argument name="age" xsi:type="number">35</argument>
+    		<argument name="scores" xsi:type="array">
+    			<item name="maths" xsi:type="number">100</item>
+    			<item name="programming" xsi:type="number">99</item>
+    		</argument>
+    	</arguments>
+    </type>
 
 </config>
