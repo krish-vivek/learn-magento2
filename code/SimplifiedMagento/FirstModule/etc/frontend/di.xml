@@ -21,13 +21,13 @@
     </type>-->
     <type name="SimplifiedMagento\FirstModule\Controller\Page\HelloWorld">
         <plugin name="plugin_on_execute"
-                type="SimplifiedMagento\FirstModule\Plugin\PluginSolution" sortOrder="10"/>
+                type="SimplifiedMagento\FirstModule\Plugin\PluginSolution" sortOrder="10" disabled="true" />
 
         <plugin name="plugin2_on_execute"
-                type="SimplifiedMagento\FirstModule\Plugin\PluginSolution2" sortOrder="20"/>
+                type="SimplifiedMagento\FirstModule\Plugin\PluginSolution2" sortOrder="20" disabled="true" />
 
         <plugin name="plugin3_on_execute"
-                type="SimplifiedMagento\FirstModule\Plugin\PluginSolution3" sortOrder="30"/>
+                type="SimplifiedMagento\FirstModule\Plugin\PluginSolution3" sortOrder="30" disabled="true" />
     </type>
 
     <type name="SimplifiedMagento\FirstModule\Model\Pencil">
@@ -54,4 +54,9 @@
     	</arguments>
     </type>
 
+    <type name="SimplifiedMagento\FirstModule\Controller\Page\HelloWorld">
+        <arguments>
+            <argument name="heavyService" xsi:type="object">SimplifiedMagento\FirstModule\Model\HeavyService\Proxy</argument>
+        </arguments>
+    </type>
 </config>

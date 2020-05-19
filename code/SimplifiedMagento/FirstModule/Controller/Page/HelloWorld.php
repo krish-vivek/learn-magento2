@@ -9,6 +9,9 @@ use Magento\Catalog\Api\ProductRepositoryInterface;
 use SimplifiedMagento\FirstModule\Api\PencilInterface;
 use SimplifiedMagento\FirstModule\Model\PencilFactory;
 use Magento\Catalog\Model\ProductFactory;
+use Magento\Framework\Event\ManagerInterface;
+use Magento\Framework\App\Request\Http;
+use SimplifiedMagento\FirstModule\Model\HeavyService;
 
 class HelloWorld extends \Magento\Framework\App\Action\Action
 {
@@ -16,18 +19,27 @@ class HelloWorld extends \Magento\Framework\App\Action\Action
 	protected $productRepository;
 	protected $pencilFactory;
 	protected $ProductFactory;
+	protected $_eventManager;
+	protected $http;
+	protected $heavyService;
 
 	public function __construct (Context $context,
+		HeavyService $heavyService,
+		Http $http,
+		ManagerInterface $_eventManager,
 		ProductFactory $productFactory,
 		PencilFactory $pencilFactory,
 		PencilInterface $pencilInterface,
 		ProductRepositoryInterface $productRepository
 	)
 	{
+		$this->http = $http;
 		$this->productFactory = $productFactory;
 		$this->pencilInterface = $pencilInterface;
 		$this->pencilFactory = $pencilFactory;
 		$this->productRepository = $productRepository;
+		$this->_eventManager = $_eventManager;
+		$this->heavyService = $heavyService;
 		parent::__construct($context);
 	}
 
@@ -85,6 +97,19 @@ class HelloWorld extends \Magento\Framework\App\Action\Action
 		// Around Plugin
 
 		echo "Main Function";
+
+		echo "<br>";
+		$massage = new \Magento\Framework\DataObject(array("greeting" => "Good Afternoon"));
+		$this->_eventManager->dispatch('custom_event', ['greeting' => $massage]);
+		echo $massage->getGreeting()."<br>";
+
+		$id = $this->http->getParam('id', 0);
+		
+		if ($id == 1) {
+			$this->heavyService->printHeavyServiceMessage();
+		} else {
+			echo "Heavy Service not used";
+		}
 
 	}
 }
