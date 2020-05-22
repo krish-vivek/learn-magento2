@@ -29,9 +29,17 @@ class Index extends Action
     	// $affiliateMember->addData(['name' => 'John', 'address' => 'a new address', 'status' => true, 'phone_number' => '0123456789']);
     	// $affiliateMember->save();
 
-    	$member  = $affiliateMember->load(8);
-    	$member->delete();
+    	//$member  = $affiliateMember->load(8);
+    	//$member->delete();
 
+        $collection = $affiliateMember->getCollection()
+                    ->addFieldToSelect(['name','status'])
+                    ->addFieldToFilter('status',array('neq' => true)); 
+        foreach ($collection as $key => $item) {
+            echo "<pre>";
+            print_r($item->getData());
+            echo "<br>";
+        }
 
     }
 }

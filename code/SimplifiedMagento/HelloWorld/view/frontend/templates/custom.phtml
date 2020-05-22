@@ -1,0 +1,33 @@
+<?php
+
+$hello = $block->getHelloWorld();
+$helloArray = $block->helloArray();
+
+/** @var \SimplifiedMagento\HelloWorld\ViewModel\HelloView */
+$viewModel = $block->getData('view_model');
+$hellov = $viewModel->getHelloWorld();
+$helloArrayv = $viewModel->helloArray();
+
+?>
+
+<?php foreach ($helloArray as $key => $value) : ?>
+<ul>
+	<li><?php echo $value; ?></li>
+</ul>
+<?php endforeach; ?>
+
+<h2><?php echo $this->getShowHello(); ?></h2>
+<h2><?php print_r($this->getShowArray()); ?></h2>
+<h3><?php echo $block->getProductName(); ?></h3>
+
+<h1><?php echo $hellov; ?></h1>
+<?php foreach ($helloArrayv as $key => $value) : ?>
+<ul>
+	<li><?php echo $value; ?></li>
+</ul>
+<?php endforeach; ?>
+
+<h3><?php echo $viewModel->getProductName(); ?></h3>
+
+
+<h4><?php echo rand(1, 100);?></h4>
