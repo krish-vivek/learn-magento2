@@ -8,6 +8,8 @@ use SimplifiedMagento\Database\Model\ResourceModel\AffiliateMember as AffiliateM
 
 class Collection extends AbstractCollection
 {
+    protected $_idFieldName = 'entity_id';
+    
 	/**
      * Initialization here
      *

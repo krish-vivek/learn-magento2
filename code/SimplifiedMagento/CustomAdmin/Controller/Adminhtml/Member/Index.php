@@ -9,16 +9,16 @@ use Magento\Framework\View\Result\PageFactory;
 
 class Index extends Action
 {
-	protected $pageFactory;
+    protected $pageFactory;
 
-	public function __construct(PageFactory $pageFactory, Context $context)
-	{
-		$this->pageFactory = $pageFactory;
-		parent::__construct($context);
-	}
+    public function __construct(PageFactory $pageFactory, Context $context)
+    {
+        $this->pageFactory = $pageFactory;
+        parent::__construct($context);
+    }
 
-	public function execute()
-	{
-		return $this->pageFactory->create();
-	}
+    public function execute()
+    {
+        return $this->pageFactory->create();
+    }
 }
