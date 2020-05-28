@@ -1,0 +1,32 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\App\Action\Action">
+        <plugin name="plugin_before_eleven_dispatch"
+                type="SimplifiedMagento\ExerciseOne\Plugin\PluginBeforeEleven" sortOrder="1" />
+        <plugin name="plugin_around_twelve_dispatch"
+                type="SimplifiedMagento\ExerciseOne\Plugin\PluginAroundTwelve" sortOrder="2" />
+        <plugin name="plugin_after_thirteen_dispatch"
+                type="SimplifiedMagento\ExerciseOne\Plugin\PluginAfterThirteen" sortOrder="30" />
+        <plugin name="plugin_before_seven_dispatch"
+                type="SimplifiedMagento\ExerciseOne\Plugin\PluginBeforeSeven" sortOrder="4" />
+        <plugin name="plugin_around_nine_dispatch"
+                type="SimplifiedMagento\ExerciseOne\Plugin\PluginAroundEight" sortOrder="5" />
+        <plugin name="plugin_after_ten_dispatch"
+                type="SimplifiedMagento\ExerciseOne\Plugin\PluginAfterNine" sortOrder="31" />
+    </type>
+
+    <type name="SimplifiedMagento\ExerciseOne\Controller\Page\Index">
+        <plugin name="plugin_before_four_dispatch"
+                type="SimplifiedMagento\ExerciseOne\Plugin\PluginBeforeFour" sortOrder="6" />
+        <plugin name="plugin_around_five_dispatch"
+                type="SimplifiedMagento\ExerciseOne\Plugin\PluginAroundFive" sortOrder="7" />
+        <plugin name="plugin_after_six_dispatch"
+                type="SimplifiedMagento\ExerciseOne\Plugin\PluginAfterSix" sortOrder="32" />
+        <plugin name="plugin_before_one_dispatch"
+                type="SimplifiedMagento\ExerciseOne\Plugin\PluginBeforeOne" sortOrder="8" />
+        <plugin name="plugin_around_two_dispatch"
+                type="SimplifiedMagento\ExerciseOne\Plugin\PluginAroundTwo" sortOrder="9" />
+        <plugin name="plugin_after_third_dispatch"
+                type="SimplifiedMagento\ExerciseOne\Plugin\PluginAfterThird" sortOrder="33" />
+    </type>
+    
+</config>
