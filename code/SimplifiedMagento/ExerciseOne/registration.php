@@ -6,4 +6,8 @@
 
 use \Magento\Framework\Component\ComponentRegistrar;
 
-ComponentRegistrar::register(ComponentRegistrar::MODULE, 'SimplifiedMagento_ExerciseOne', __DIR__);
+ComponentRegistrar::register(
+    ComponentRegistrar::MODULE,
+    'SimplifiedMagento_ExerciseOne',
+    __DIR__
+);

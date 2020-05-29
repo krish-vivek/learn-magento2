@@ -1,43 +1,54 @@
 <?php
 
-/** Created By Vivek **/
-
+/**
+ * Index controller.
+ *
+ * @package SimplifiedMagento
+ * @author  vivek parmar <vivek@.com>
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 namespace SimplifiedMagento\ExerciseOne\Controller\Page;
 
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Exception\NotFoundException;
-use Magento\Framework\App\Request\Http;
 
+/**
+ * Exerciseone index page controller.
+ */
 class Index extends \Magento\Framework\App\Action\Action
 {
+    /**
+     * Constructor
+     *
+     * @param Context $context //context
+     */
+    public function __construct(Context $context)
+    {
+        parent::__construct($context);
+    }
 
-	protected $http;
-
-	public function __construct (Context $context, Http $http)
-	{
-		$this->http = $http;
-		parent::__construct($context);
-	}
-
-	/**
+    /**
+     * Execute 
+     *
      * @return void
      */
-	public function execute()
-	{
-		// TODO : Implement execute() method.
-	}
+    public function execute()
+    {
+        // TODO : Implement execute() method.
+    }
 
-	/**
+    /**
      * Dispatch request
      *
-     * @param RequestInterface $request
+     * @param RequestInterface $request //request
+     *
      * @return ResponseInterface
-     * @throws NotFoundException
      */
     public function dispatch(RequestInterface $request)
     {
-    	return parent::dispatch($request, "test");
+        return parent::dispatch($request, "test");
     }
 }
