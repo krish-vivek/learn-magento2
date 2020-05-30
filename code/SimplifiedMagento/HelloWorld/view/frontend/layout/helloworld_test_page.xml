@@ -6,6 +6,9 @@
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <!--<head>
+        <script src="SimplifiedMagento_HelloWorld/js/script-example.js" />
+    </head>
     <body>
     	<referenceContainer name="content">
     		<block class="SimplifiedMagento\HelloWorld\Block\HelloWorld" name="hello_world"
@@ -20,5 +23,13 @@
     		 	</arguments>
     		</block>
     	</referenceContainer>
+    </body>-->
+    <body>
+        <referenceContainer name="content">
+            <block name="hello_world"
+             template="SimplifiedMagento_HelloWorld::custom.phtml">
+
+            </block>
+        </referenceContainer>
     </body>
  </page>

@@ -1,33 +1,60 @@
 <?php
 
-$hello = $block->getHelloWorld();
-$helloArray = $block->helloArray();
 
-/** @var \SimplifiedMagento\HelloWorld\ViewModel\HelloView */
-$viewModel = $block->getData('view_model');
-$hellov = $viewModel->getHelloWorld();
-$helloArrayv = $viewModel->helloArray();
 
 ?>
+<!--<script type="text/x-magento-init">
+	{
+		"#target":{
+			"coffee":{
+				"base_url":"<?//= $block->escapeJs($block->getBaseUrl()) ?>"
+			} 
+		}
+	}
+</script>-->
+<!--<div id="target" data-mage-init='{"SimplifiedMagento_HelloWorld/js/requirejs-example":{"base_url":"/"}}'></div>-->
+<!--<div id="target"></div>-->
+<!--<h1 data-mage-init='{"simplifiedMagento/title":{}}' />
+<h1 data-mage-init='{"simplifiedMagento-title":{}}' />-->
 
-<?php foreach ($helloArray as $key => $value) : ?>
-<ul>
-	<li><?php echo $value; ?></li>
-</ul>
-<?php endforeach; ?>
+<!--<form data-mage-init='{"validation": {}}'>
+	<div class="control">
+		<input type="text" name="email" id="email" class="input-text" placeholder="<?//= __('Your Email') ?>" data-validate="{required:true, 'validate-email': true}" />
+	</div>
+	<button type="submit" class="action primary"><?//= __('Submit') ?></button>
+</form>-->
 
-<h2><?php echo $this->getShowHello(); ?></h2>
-<h2><?php print_r($this->getShowArray()); ?></h2>
-<h3><?php echo $block->getProductName(); ?></h3>
+<!--<div id="my-collapsible" data-mage-init='{"SimplifiedMagento_HelloWorld/js/dynamic-collapsible": {"ajaxContent":true}}'>
+	<div data-role="title">
+		<h2>How about a collapsible widget<button data-role="trigger">GO</button></h2>
+	</div>
+	<div id="example" data-role="content">
+	</div>
+	<a href="<?//= $block->getViewFileUrl('SimplifiedMagento_HelloWorld/example-content.html') ?>" data-ajax="true"></a>
+</div>-->
 
-<h1><?php echo $hellov; ?></h1>
-<?php foreach ($helloArrayv as $key => $value) : ?>
-<ul>
-	<li><?php echo $value; ?></li>
-</ul>
-<?php endforeach; ?>
+<script type="text/x-magento-init">
+	{
+		"*":{
+			"Magento_Ui/js/core/app":{
+				"components": {
+					"component-a": {
+						"component":"SimplifiedMagento_HelloWorld/js/ui-component-a"
+					},
+					"component-b": {
+						"component":"SimplifiedMagento_HelloWorld/js/ui-component-b"
+					}
+				}
+			} 
+		}
+	}
+</script>
 
-<h3><?php echo $viewModel->getProductName(); ?></h3>
-
-
-<h4><?php echo rand(1, 100);?></h4>
+<div data-bind="scope: 'component-a'">
+	<h3 data-bind="text: label"></h3>
+	<div data-bind="text: amount"></div>
+</div>
+<div data-bind="scope: 'component-b'">
+	<h3 data-bind="text: title"></h3>
+	<div data-bind="text: value"></div>
+</div>
