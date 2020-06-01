@@ -1,0 +1,23 @@
+<table style="border: 1px solid red; border-collapse: unset">
+	<tr>
+		<th>namespace (ns)</th>
+		<td data-bind="text: ns"></td>
+	</tr>
+	<tr>
+		<th>index</th>
+		<td data-bind="text: index"></td>
+	</tr>
+	<tr>
+		<th>name</th>
+		<td data-bind="text: name"></td>
+	</tr>
+	<tr data-bind="if: elems().length">
+		<th>Children</th>
+		<td>
+			<each args="elems">
+				<render/>
+			</each>
+		</td>
+	</tr>
+
+</table>

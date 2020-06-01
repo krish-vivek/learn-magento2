@@ -1,6 +1,6 @@
 var config = {
 	/*deps: ['SimplifiedMagento_HelloWorld/js/log-when-loaded'],*/
-	map: {
+	/*map: {
 		'*': {
 			coffee: 'SimplifiedMagento_HelloWorld/js/requirejs-example'
 		}
@@ -14,7 +14,7 @@ var config = {
 				"SimplifiedMagento_HelloWorld/js/add-to-cart-mixin":true
 			}
 		}
-	},
+	},*/
 	/*shim: {
 		'Magento_Catalog/js/view/compare-products':{
 			deps: ['SimplifiedMagento_HelloWorld/js/before-compare-products-example']
