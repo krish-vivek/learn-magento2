@@ -38,10 +38,11 @@
 		"*":{
 			"Magento_Ui/js/core/app":{
 				"components": {
-					"component-a": {
-						"component":"SimplifiedMagento_HelloWorld/js/ui-component-a"
+					"exampleUiComponent": {
+						"component":"SimplifiedMagento_HelloWorld/js/ui-component-a",
+						"provider":"exampleUiComponentB"
 					},
-					"component-b": {
+					"exampleUiComponentB": {
 						"component":"SimplifiedMagento_HelloWorld/js/ui-component-b"
 					}
 				}
@@ -50,11 +51,86 @@
 	}
 </script>
 
-<div data-bind="scope: 'component-a'">
+<div data-bind="scope: 'exampleUiComponent'">
 	<h3 data-bind="text: label"></h3>
 	<div data-bind="text: amount"></div>
 </div>
-<div data-bind="scope: 'component-b'">
+<div data-bind="scope: 'exampleUiComponentB'">
 	<h3 data-bind="text: title"></h3>
 	<div data-bind="text: value"></div>
 </div>
+
+<!--<script type="text/x-magento-init">
+	{
+		"*":{
+			"Magento_Ui/js/core/app":{
+				"components": {
+					"startSimple": {
+						"component":"SimplifiedMagento_HelloWorld/js/plain-view-model",
+						"base_url":"<?//= $block->escapeJs($block->getBaseUrl()) ?>"
+					}
+				}
+			} 
+		}
+	}
+</script>-->
+
+<!--<script type="text/x-magento-init">
+	{
+		"*":{
+			"Magento_Ui/js/core/app":{
+				"components": {
+					"exampleUiComponent": {
+						"component":"uiComponent",
+						"children":{
+							"child1": {
+								"component":"uiComponent",
+								"template":"SimplifiedMagento_HelloWorld/info",
+								"displayArea":"groupA"
+							},
+							"child2": {
+								"component":"uiComponent",
+								"template":"SimplifiedMagento_HelloWorld/info",
+								"displayArea":"groupB"
+							}
+						}
+					}
+				}
+			} 
+		}
+	}
+</script>-->
+
+<!--<div data-bind="scope: 'exampleUiComponent'">-->
+	
+<!--</div>-->
+<!--<div data-bind="scope: 'startSimple'">
+	<h2 data-bind="text: label"></h2>
+	<table data-bind="foreach: items">
+		 <tr>
+			<td data-bind="text: name"></td>
+			<td data-bind="text: qty"></td>
+			<td data-bind="text: price"></td>
+			<td data-bind="text: $parent.rowTotal($data)"></td>
+		</tr>
+	</table>
+	<div>Additional change: <span data-bind="text: additional_change"></span></div>
+	<strong>Total: <span data-bind="text: total()"></span></strong>-->
+	<!--<h2 data-bind="text: title"></h2>
+	<pre data-bind="text: JSON.stringify(config, null, 2)"></pre>-->
+	<!--<pre data-bind="text: output"></pre>-->
+	<!--<table data-bind="foreach: exchange_rates">
+		<tr>
+			<th data-bind="i18n: 'Currency to'"></th>
+			<th data-bind="i18n: 'Rate'"></th>
+		</tr>
+		 ko foreach: exchange_rate -->
+		<!-- <tr>
+			<td data-bind="text: currency_to"></td>
+			<td data-bind="text: rate"></td>
+		</tr></table>-->
+		<!-- /ko -->
+	<!--<ui data-bind="foreach: values">
+		<li data-bind="text: $data"></li>
+	</ui>
+</div>-->
