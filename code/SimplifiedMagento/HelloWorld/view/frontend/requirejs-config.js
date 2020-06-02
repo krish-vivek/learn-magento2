@@ -4,17 +4,20 @@ var config = {
 		'*': {
 			coffee: 'SimplifiedMagento_HelloWorld/js/requirejs-example'
 		}
-	},
+	},*/
 	config: {
 		mixins: {
-			'Magento_Checkout/js/checkout-data': {
+			/*'Magento_Checkout/js/checkout-data': {
 				'SimplifiedMagento_HelloWorld/js/checkout-data-mixin':true
 			},
 			'Magento_Catalog/js/catalog-add-to-cart': {
 				"SimplifiedMagento_HelloWorld/js/add-to-cart-mixin":true
 			}
+			'Magento_Checkout/js/view/minicart': {
+				'SimplifiedMagento_HelloWorld/js/minicart-mixin':true
+			},*/
 		}
-	},*/
+	},
 	/*shim: {
 		'Magento_Catalog/js/view/compare-products':{
 			deps: ['SimplifiedMagento_HelloWorld/js/before-compare-products-example']

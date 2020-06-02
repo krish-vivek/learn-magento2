@@ -15,7 +15,7 @@ define(['uiComponent'], function (Component){
 				amount:true
 			},
 			imports: {
-				amount: '${$.provider}:value'
+				amount: '${ $.provider }:${ $.providerProperty }'
 			}
 		}
 	});
