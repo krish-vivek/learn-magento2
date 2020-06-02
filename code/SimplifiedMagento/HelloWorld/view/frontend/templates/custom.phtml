@@ -3,6 +3,80 @@
 
 
 ?>
+
+<script type="text/x-magento-init">
+	{
+		"*":{
+			"Magento_Ui/js/core/app":{
+				"components": {
+					"mutator": {
+						"component":"SimplifiedMagento_HelloWorld/js/value-mutator",
+						"template":"SimplifiedMagento_HelloWorld/button",
+						"children": {
+							"display" : {
+								"component":"SimplifiedMagento_HelloWorld/js/value-display",
+								"template":"SimplifiedMagento_HelloWorld/display"
+							}
+						}
+					}
+				}
+			} 
+		}
+	}
+</script>
+
+<div data-bind="scope: 'mutator'">
+	<!-- ko template: getTemplate() -->
+	<!-- /ko -->
+</div>
+
+<!--<script type="text/x-magento-init">
+	{
+		"*":{
+			"Magento_Ui/js/core/app":{
+				"components": {
+					"exampleUiComponent": {
+						"component":"SimplifiedMagento_HelloWorld/js/ui-component",
+						"template":"SimplifiedMagento_HelloWorld/localize-template"
+					}
+				}
+			} 
+		}
+	}
+</script>-->
+
+<!--<div data-bind="scope: 'exampleUiComponent'">-->
+	
+<!--</div>-->
+
+<!-- shared component -->
+
+<!--<script type="text/x-magento-init">
+	{
+		"*":{
+			"Magento_Ui/js/core/app": {
+				"components": {
+					"root" : {
+						"component": "SimplifiedMagento_HelloWorld/js/root",
+						"deps":["root.sharedState"],
+						"children": {
+							"sharedState": {
+								"component":"SimplifiedMagento_HelloWorld/js/shared-state"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+</script>
+
+<div data-bind="scope: 'root'">
+	<div>
+		The Value is:
+		<span data-bind="text: value"></span>
+	</div>
+</div>-->
 <!--<script type="text/x-magento-init">
 	{
 		"#target":{
@@ -33,14 +107,15 @@
 	<a href="<?//= $block->getViewFileUrl('SimplifiedMagento_HelloWorld/example-content.html') ?>" data-ajax="true"></a>
 </div>-->
 
-<script type="text/x-magento-init">
+<!--<script type="text/x-magento-init">
 	{
 		"*":{
 			"Magento_Ui/js/core/app":{
 				"components": {
 					"exampleUiComponent": {
 						"component":"SimplifiedMagento_HelloWorld/js/ui-component-a",
-						"provider":"exampleUiComponentB"
+						"provider":"exampleUiComponentB",
+						"providerProperty": "value"
 					},
 					"exampleUiComponentB": {
 						"component":"SimplifiedMagento_HelloWorld/js/ui-component-b"
@@ -49,16 +124,25 @@
 			} 
 		}
 	}
+</script>-->
+
+<!--<script type="text/x-magento-init">
+	{
+		"*":{
+			"Magento_Ui/js/core/app": <?//= $block->getJsLayout() ?>
+		}
+	}
 </script>
 
 <div data-bind="scope: 'exampleUiComponent'">
 	<h3 data-bind="text: label"></h3>
 	<div data-bind="text: amount"></div>
-</div>
-<div data-bind="scope: 'exampleUiComponentB'">
-	<h3 data-bind="text: title"></h3>
-	<div data-bind="text: value"></div>
-</div>
+
+	<div data-bind="with: getChild('exampleUiComponentB')">
+		<h3 data-bind="text: title"></h3>
+		<div data-bind="text: value"></div>
+	</div>
+</div>-->
 
 <!--<script type="text/x-magento-init">
 	{
@@ -133,4 +217,23 @@
 	<!--<ui data-bind="foreach: values">
 		<li data-bind="text: $data"></li>
 	</ui>
+</div>-->
+
+<!--Stateful component<script type="text/x-magento-init">
+	{
+		"*":{
+			"Magento_Ui/js/core/app": {
+				"components": {
+					"stateful-example-component" : {
+						"component": "SimplifiedMagento_HelloWorld/js/stateful-example"
+					}
+				}
+			}
+		}
+	}
+</script>
+
+<div data-bind="scope: 'stateful-example-component'">
+	<h3>Your Input:</h3>
+	<input data-bind="textInput: input" autofocus/>
 </div>-->

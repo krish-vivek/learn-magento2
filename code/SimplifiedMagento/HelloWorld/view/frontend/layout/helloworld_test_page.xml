@@ -28,7 +28,30 @@
         <referenceContainer name="content">
             <block name="hello_world"
              template="SimplifiedMagento_HelloWorld::custom.phtml">
-
+                <arguments>
+                    <argument name="jsLayout" xsi:type="array"> 
+                        <item name="components" xsi:type="array">
+                            <item name="exampleUiComponent" xsi:type="array">
+                                <item name="component" xsi:type="string">
+                                    SimplifiedMagento_HelloWorld/js/ui-component-a
+                                </item>
+                                <item name="config" xsi:type="array">
+                                    <item name="label" xsi:type="string">Component A</item>
+                                </item>
+                                <item name="children" xsi:type="array">
+                                    <item name="exampleUiComponentB" xsi:type="array">
+                                        <item name="component" xsi:type="string">
+                                            SimplifiedMagento_HelloWorld/js/ui-component-b
+                                        </item>
+                                        <item name="title" xsi:type="string">
+                                            Component B
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
             </block>
         </referenceContainer>
     </body>
