@@ -52,6 +52,8 @@
                                 <div class="or-another-selection"><?php echo __('or'); ?></div>
                                 <div class="secondary"><a class="action remind" href="<?php /* @escapeNotVerified */ echo $block->getCustomerRegistrationUrl() ?>" id="customer-popup-registration"><span><?php /* @escapeNotVerified */ echo __('Create an Account') ?></span></a></div>
                             <?php endif; ?>
+                            <div class="or-another-selection"><?php echo __('or'); ?></div>
+                            <div class="forget"><a class="action remind customer-forgot-password" href="<?= $block->escapeUrl($block->getForgotPasswordUrl()) ?>"><span><?= $block->escapeHtml(__('Forgot Your Password?')) ?></span></a></div>
                         </div>
                     </fieldset>
                 </form>
