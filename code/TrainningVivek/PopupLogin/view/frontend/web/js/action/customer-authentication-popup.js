@@ -14,7 +14,8 @@ define([
             login: '#customer-popup-login',
             nextRegister: '#customer-popup-registration',
             register: '#customer-popup-register',
-            prevLogin: '#customer-popup-sign-in'
+            prevLogin: '#customer-popup-sign-in',
+            forgetPass: '#customer-popup-forgot-password'
         },
 
         /**
@@ -46,6 +47,13 @@ define([
             $('body').on('click', '.customer-register-link, '+self.options.nextRegister, function() {
                 $(self.options.login).modal('closeModal');
                 $(self.options.register).modal('openModal');
+                self._setStyleCss(self.options.innerWidth);
+                return false;
+            });
+
+            $('body').on('click', '.customer-forgot-password ', function() {
+                $(self.options.login).modal('closeModal');
+                $(self.options.forgetPass).modal('openModal');
                 self._setStyleCss(self.options.innerWidth);
                 return false;
             });
@@ -95,7 +103,7 @@ define([
 
             form.submit(function (e) {
                 if (form.validation('isValid')) {
-                    if (form.hasClass('form-create-account')) {
+                    if (form.hasClass('form-create-account') || form.hasClass('form-forger-password')) {
                         $.ajax({
                             url: $(e.target).attr('action'),
                             data: $(e.target).serializeArray(),
@@ -137,6 +145,7 @@ define([
          * @private
          */
         _displayMessages: function(className, message) {
+            console.log(message);
             $('<div class="message '+className+'"><div>'+message+'</div></div>').appendTo(this.element.find('.messages'));
         },
 
@@ -148,7 +157,7 @@ define([
          */
         _showResponse: function(response, locationHref) {
             var self = this,
-                timeout = 800;
+                timeout = 8000;
             this.element.find('.messages').html('');
             if (response.errors) {
                 this._displayMessages('message-error error', response.message);

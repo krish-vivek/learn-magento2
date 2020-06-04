@@ -6,6 +6,9 @@
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link src="TrainningVivek_PopupLogin/css/module-styles.css" />
+    </head>
     <body>
         <referenceBlock name="register-link">
             <arguments>
@@ -20,6 +23,7 @@
         <referenceContainer name="before.body.end">
             <block class="TrainningVivek\PopupLogin\Block\Form\Login" name="customer-popup-login" template="TrainningVivek_PopupLogin::login.phtml" />
             <block class="TrainningVivek\PopupLogin\Block\Form\Register" name="customer-popup-register" template="TrainningVivek_PopupLogin::register.phtml" />
+            <block class="TrainningVivek\PopupLogin\Block\Form\Forgotpassword" name="customer-popup-forgot-password" template="TrainningVivek_PopupLogin::forgotpassword.phtml" />
         </referenceContainer>
     </body>
 </page>
