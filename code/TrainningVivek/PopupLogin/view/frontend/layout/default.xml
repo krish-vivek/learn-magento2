@@ -7,6 +7,7 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
+        <title>Custom Form</title>
         <link src="TrainningVivek_PopupLogin/css/module-styles.css" />
     </head>
     <body>
@@ -22,8 +23,23 @@
         </referenceBlock>
         <referenceContainer name="before.body.end">
             <block class="TrainningVivek\PopupLogin\Block\Form\Login" name="customer-popup-login" template="TrainningVivek_PopupLogin::login.phtml" />
-            <block class="TrainningVivek\PopupLogin\Block\Form\Register" name="customer-popup-register" template="TrainningVivek_PopupLogin::register.phtml" />
-            <block class="TrainningVivek\PopupLogin\Block\Form\Forgotpassword" name="customer-popup-forgot-password" template="TrainningVivek_PopupLogin::forgotpassword.phtml" />
+            <block class="TrainningVivek\PopupLogin\Block\Form\Forgotpassword" name="customer-popup-forgot-password" template="TrainningVivek_PopupLogin::forgotpassword.phtml">
+            </block>
+            <block class="TrainningVivek\PopupLogin\Block\Form\Register" name="customer-popup-register" template="TrainningVivek_PopupLogin::register.phtml">
+                <container name="form.additional.info" as="form_additional_info">
+                    <block class="Magento\Captcha\Block\Captcha" name="captcha" after="-" cacheable="false">
+                        <action method="setFormId">
+                            <argument name="formId" xsi:type="string">user_create</argument>
+                        </action>
+                        <action method="setImgWidth">
+                            <argument name="width" xsi:type="string">230</argument>
+                        </action>
+                        <action method="setImgHeight">
+                            <argument name="width" xsi:type="string">50</argument>
+                        </action>
+                    </block>
+                </container>
+            </block>
         </referenceContainer>
     </body>
 </page>
