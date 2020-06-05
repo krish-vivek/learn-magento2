@@ -58,6 +58,7 @@
                         <input type="password" name="password_confirmation" title="<?php /* @escapeNotVerified */ echo __('Confirm Password') ?>" id="password-confirmation" class="input-text" data-validate="{required:true, equalTo:'#password'}" autocomplete="off">
                     </div>
                 </div>
+                <?= $block->getChildHtml('form_additional_info') ?>
             </fieldset>
             <div class="actions-toolbar">
                 <div class="primary">

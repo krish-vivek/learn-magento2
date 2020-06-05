@@ -162,7 +162,7 @@ define([
          */
         _showResponse: function(response, locationHref) {
             var self = this,
-                timeout = 8000;
+                timeout = 2000;
             this.element.find('.messages').html('');
             if (response.errors) {
                 this._displayMessages('message-error error', response.message);
@@ -183,6 +183,7 @@ define([
          * @private
          */
         _showFailingMessage: function() {
+            $(".captcha-reload").trigger("click");
             this.element.find('.messages').html('');
             this._displayMessages('message-error error', $t('An error occurred, please try again later.'));
             this.element.find('.messages .message').show();
