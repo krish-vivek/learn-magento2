@@ -37,7 +37,12 @@ define([
 
             // Show the login form in a popup when clicking on the sign in text
             $('body').on('click', '.customer-login-link, '+self.options.prevLogin, function() {
-                $(self.options.register).modal('closeModal');
+                if($(self.options.forgetPass).is(':visible')) {
+                    $(self.options.forgetPass).modal('closeModal');
+                }
+                if($(self.options.register).is(':visible')) {
+                    $(self.options.register).modal('closeModal');
+                }
                 $(self.options.login).modal('openModal');
                 self._setStyleCss();
                 return false;
