@@ -116,6 +116,7 @@ define([
                             type: 'POST',
                             dataType: 'json',
                             success: function (response) {
+                                //console.log();
                                 self._showResponse(response, form.find('input[name="redirect_url"]').val());
                             },
                             error: function() {
@@ -150,7 +151,6 @@ define([
          * @private
          */
         _displayMessages: function(className, message) {
-            console.log(message);
             $('<div class="message '+className+'"><div>'+message+'</div></div>').appendTo(this.element.find('.messages'));
         },
 
@@ -183,7 +183,6 @@ define([
          * @private
          */
         _showFailingMessage: function() {
-            $(".captcha-reload").trigger("click");
             this.element.find('.messages').html('');
             this._displayMessages('message-error error', $t('An error occurred, please try again later.'));
             this.element.find('.messages .message').show();
