@@ -2,12 +2,44 @@
 	$product = $block->getProduct();
 ?>
 <div id="daily-deals">
-	<?php if ($product->getData('deal_status') == 1): ?>
-		<h1 style="color: #1979c3">
-			<?php echo date('d-m-Y H:i:s', time()); ?>
-			<?php echo $product->getData('deal_time'); ?>
-		</h1>
-		<div class="countdown countdown-container container" id="daily-deals-counter">
+	<style>
+		.clock-item .inner {
+			height: 0px;
+			padding-bottom: 100%;
+			position: relative;	
+			width: 100%;
+		}
+
+		.clock-canvas {
+			background-color: rgba(255, 255, 50, 1);
+			border-radius: 50%;
+			height: 0px;
+			padding-bottom: 100%;
+		}
+
+		#daily-deals-counter .text {
+			color: #1979c3;	
+			font-size: 30px;
+			font-weight: bold;	
+			margin-top: -50px;
+			position: absolute;
+			top: 50%;
+			text-align: center;
+			text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+			width: 100%;
+		}
+
+		#daily-deals-counter .text .val {
+			font-size: 50px;
+		}
+
+		#daily-deals-counter .text .type-time {
+			font-size: 20px;
+		}
+	</style>
+	<?php if (($product->getData('deal_status') == 1) && (strtotime($product->getData('deal_time')) > time())): ?>
+		<h1>Deal ends in</h1>
+		<div class="countdown container" id="daily-deals-counter">
 		    <div class="clock row">
 		        <div class="clock-item clock-days countdown-time-value col-sm-6 col-md-3">
 		            <div class="wrap">
@@ -15,7 +47,7 @@
 		                    <div id="canvas-days" class="clock-canvas"></div>
 
 		                    <div class="text">
-		                        <p class="val">0</p>
+		                        <h1 class="val">0</h1>
 		                        <p class="type-days type-time">DAYS</p>
 		                    </div><!-- /.text -->
 		                </div><!-- /.inner -->
@@ -28,7 +60,7 @@
 		                    <div id="canvas-hours" class="clock-canvas"></div>
 
 		                    <div class="text">
-		                        <p class="val">0</p>
+		                        <h1 class="val">0</h1>
 		                        <p class="type-hours type-time">HOURS</p>
 		                    </div><!-- /.text -->
 		                </div><!-- /.inner -->
@@ -41,7 +73,7 @@
 		                    <div id="canvas-minutes" class="clock-canvas"></div>
 
 		                    <div class="text">
-		                        <p class="val">0</p>
+		                        <h1 class="val">0</h1>
 		                        <p class="type-minutes type-time">MINUTES</p>
 		                    </div><!-- /.text -->
 		                </div><!-- /.inner -->
@@ -54,7 +86,7 @@
 		                    <div id="canvas-seconds" class="clock-canvas"></div>
 
 		                    <div class="text">
-		                        <p class="val">0</p>
+		                        <h1 class="val">0</h1>
 		                        <p class="type-seconds type-time">SECONDS</p>
 		                    </div><!-- /.text -->
 		                </div><!-- /.inner -->
@@ -62,11 +94,22 @@
 		        </div><!-- /.clock-item -->
 		    </div><!-- /.clock -->
 		</div><!-- /.countdown-wrapper -->
+		<script>
+			require.config({
+		       map: {
+		           '*': {
+		               'kinectic':  'https://cdnjs.cloudflare.com/ajax/libs/kineticjs/5.1.9/kinetic.min.js',
+		               'counterlib': 'TrainningVivek_ProductDailyDeal/js/action/counter-lib'
+		           }
+		       }
+		   	});
+		</script>
 		<script type="text/x-magento-init">
 		    {
 		        "#daily-deals": {
 		            "TrainningVivek_ProductDailyDeal/js/action/daily-deals-counter": {
-		                "deal_time": "<?php /* @escapeNotVerified */ echo strtotime($product->getData('deal_time')); ?>"
+		                "deal_time": "<?php /* @escapeNotVerified */ echo strtotime($product->getData('deal_time')); ?>",
+		                "now": "<?php /* @escapeNotVerified */ echo time(); ?>"
 		            }
 		        }
 		    }

@@ -9,6 +9,7 @@ use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Eav\Model\Entity\Attribute\Source\Boolean;
 use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 use Magento\Eav\Model\Entity\Attribute\Backend\Datetime;
+use TrainningVivek\ProductDailyDeal\Model\Product\Attribute\Backend\DealTime;
 
 class InstallData implements InstallDataInterface
 {
@@ -56,13 +57,13 @@ class InstallData implements InstallDataInterface
                 'group' => 'General',
                 'type' => 'datetime',
                 'input' =>  'date',
-                'backend' => Datetime::class,
                 'visible' => true,
                 'required' => false,
                 'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
                 'searchable'=> false,
                 'used_in_product_listing'=>false,
-                'label' => 'Deal Time'
+                'label' => 'Deal Time',
+                'backend' => DealTime::class
             ]
         );
 
