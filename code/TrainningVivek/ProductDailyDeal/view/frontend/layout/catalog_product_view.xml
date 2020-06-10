@@ -4,12 +4,8 @@
 		<css src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"  src_type="url" rel="stylesheet" type="text/css"  />
 	</head>
 	<body>
-		<referenceBlock name="product.info.details">
-			<block class="Magento\Catalog\Block\Product\View" name="product_daily.tab" template="TrainningVivek_ProductDailyDeal::product_daily_tab.phtml" group="detailed_info" >
-				<arguments>
-					<argument translate="true" name="title" xsi:type="string">Product Daily Deal</argument>
-				</arguments>
-			</block>
-		</referenceBlock>
+		<referenceContainer name="product.info.main">
+            <block class="Magento\Catalog\Block\Product\View" name="custom.text" template="TrainningVivek_ProductDailyDeal::product_daily_tab.phtml" after="product.info.price"/>
+        </referenceContainer>
 	</body>
 </page>
