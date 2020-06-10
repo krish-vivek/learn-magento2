@@ -19,27 +19,26 @@
 
 		#daily-deals-counter .text {
 			color: #1979c3;	
-			font-size: 30px;
+			font-size: 20px;
 			font-weight: bold;	
-			margin-top: -50px;
 			position: absolute;
-			top: 50%;
+			top: 7%;
 			text-align: center;
 			text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
 			width: 100%;
 		}
 
 		#daily-deals-counter .text .val {
-			font-size: 50px;
+			font-size: 20px;
 		}
 
 		#daily-deals-counter .text .type-time {
-			font-size: 20px;
+			font-size: 10px;
 		}
 	</style>
 	<?php if (($product->getData('deal_status') == 1) && (strtotime($product->getData('deal_time')) > time())): ?>
 		<h1>Deal ends in</h1>
-		<div class="countdown container" id="daily-deals-counter">
+		<div class="countdown" id="daily-deals-counter">
 		    <div class="clock row">
 		        <div class="clock-item clock-days countdown-time-value col-sm-6 col-md-3">
 		            <div class="wrap">

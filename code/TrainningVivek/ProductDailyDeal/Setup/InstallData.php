@@ -35,7 +35,7 @@ class InstallData implements InstallDataInterface
     		\Magento\Catalog\Model\Product::ENTITY,
     		'deal_status',
     		[
-    			'group' => 'General',
+    			'group' => 'Daily Deals',
     			'type' => 'int',
     			'input' =>  'select',
                 'visible' => true,
@@ -54,7 +54,7 @@ class InstallData implements InstallDataInterface
             \Magento\Catalog\Model\Product::ENTITY,
             'deal_time',
             [
-                'group' => 'General',
+                'group' => 'Daily Deals',
                 'type' => 'datetime',
                 'input' =>  'date',
                 'visible' => true,

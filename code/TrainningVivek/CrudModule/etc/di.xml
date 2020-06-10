@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="MarsGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">TrainningVivek\CrudModule\Model\ResourceModel\MarsTicket\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">TicketGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+    
+    <virtualType name="TicketGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+      <arguments>
+          <argument name="appliers" xsi:type="array">
+              <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\RegularFilter</item>
+              <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\FullText</item>
+          </argument>
+      </arguments>
+    </virtualType>
+    
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="mars_ticket_listing_data_source" xsi:type="string">TrainningVivek\CrudModule\Model\Resource\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="TrainningVivek\CrudModule\Model\Resource\Grid\Collection" 
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mars_ticket</argument>
+            <argument name="resourceModel" xsi:type="string">TrainningVivek\CrudModule\Model\ResourceModel\MarsTicket</argument>
+        </arguments>
+    </virtualType>
+    
+</config>
