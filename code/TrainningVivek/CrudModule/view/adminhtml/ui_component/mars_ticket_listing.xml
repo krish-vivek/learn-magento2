@@ -131,7 +131,7 @@
                     <item name="config" xsi:type="array">
                         <item name="type" xsi:type="string">delete</item>
                         <item name="label" xsi:type="string" translate="true">Delete</item>
-                        <item name="url" xsi:type="url" path="affiliate/member/massDelete"/>
+                        <item name="url" xsi:type="url" path="mars/ticket/massDelete"/>
                         <item name="confirm" xsi:type="array">
                             <item name="title" xsi:type="string" translate="true">Delete items</item>
                             <item name="message" xsi:type="string" translate="true">Are you sure you want to delete selected items?</item>
@@ -186,7 +186,7 @@
                 </item>
                 <item name="childDefaults" xsi:type="array">
                     <item name="fieldAction" xsi:type="array">
-                        <item name="provider" xsi:type="string">mars_ticket_listing.mars_ticket_listing.mars_ticket_listing.affiliate_member_columns_editor</item>
+                        <item name="provider" xsi:type="string">mars_ticket_listing.mars_ticket_listing.mars_ticket_listing.mars_ticket_columns_editor</item>
                         <item name="target" xsi:type="string">startEdit</item>
                         <item name="params" xsi:type="array">
                             <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
@@ -240,7 +240,7 @@
         </column>
 
         <!-- Status -->
-        <column name="status" class="SimplifiedMagento\CustomAdmin\Ui\Component\Listing\Column\Status">
+        <column name="status" class="TrainningVivek\CrudModule\Ui\Component\Listing\Column\Status">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="sortOrder" xsi:type="number">70</item>
@@ -251,52 +251,30 @@
         </column>
 
         <!-- Ticket Type -->
-        <column name="ticket_type">
+        <column name="ticket_type" class="TrainningVivek\CrudModule\Ui\Component\Listing\Column\TicketType">
             <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="array">
+                    <item name="option1" xsi:type="array">
+                        <item name="value" xsi:type="string">1</item>
+                        <item name="label" xsi:type="string">Type 1</item>
+                    </item>
+                    <item name="option2" xsi:type="array">
+                        <item name="value" xsi:type="string">2</item>
+                        <item name="label" xsi:type="string">Type 2</item>
+                    </item>
+                    <item name="option3" xsi:type="array">
+                        <item name="value" xsi:type="string">3</item>
+                        <item name="label" xsi:type="string">Type 3</item>
+                    </item>
+                </item>
                 <item name="config" xsi:type="array">
                     <item name="editor" xsi:type="array">
-                        <item name="editorType" xsi:type="string">text</item>
-                        <item name="validation" xsi:type="array">
-                            <item name="required-entry" xsi:type="boolean">true</item>
-                        </item>
+                        <item name="editorType" xsi:type="string">select</item>
                     </item>
-                    <item name="filter" xsi:type="string">text</item>
+                    <item name="dataType" xsi:type="string">select</item>
                     <item name="label" xsi:type="string" translate="true">Ticket Type</item>
                     <item name="sortOrder" xsi:type="number">20</item>
-                </item>
-            </argument>
-        </column>
-
-        <!-- Ticket Tags -->
-        <column name="ticket_tags">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="editor" xsi:type="array">
-                        <item name="editorType" xsi:type="string">text</item>
-                        <item name="validation" xsi:type="array">
-                            <item name="required-entry" xsi:type="boolean">true</item>
-                        </item>
-                    </item>
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Ticket Tags</item>
-                    <item name="sortOrder" xsi:type="number">20</item>
-                </item>
-            </argument>
-        </column>
-
-        <!-- Ticket Language -->
-        <column name="ticket_lang">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="editor" xsi:type="array">
-                        <item name="editorType" xsi:type="string">text</item>
-                        <item name="validation" xsi:type="array">
-                            <item name="required-entry" xsi:type="boolean">true</item>
-                        </item>
-                    </item>
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Ticket Language</item>
-                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="filter" xsi:type="string">select</item>
                 </item>
             </argument>
         </column>

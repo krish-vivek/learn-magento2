@@ -12,6 +12,8 @@ interface MarsTicketInterface extends ExtensibleDataInterface
 	const TICKET_TYPE = "ticket_type";
 	const TICKET_TAGS = "ticket_tags";
 	const TICKET_LANG = "ticket_lang";
+	const TICKET_DESCRIPTION = "ticket_description";
+	const TICKET_COLOR = "ticket_color";
 	const CREATED_AT = "created_at";
 	const UPDATED_AT = "updated_at";
 
@@ -44,6 +46,16 @@ interface MarsTicketInterface extends ExtensibleDataInterface
 	 * @return string
 	 */
 	public function getTicketLang();
+
+	/**
+	 * @return string
+	 */
+	public function getTicketDescription();
+
+	/**
+	 * @return string
+	 */
+	public function getTicketColor();
 	
 	/**
 	 * @return string
@@ -90,6 +102,18 @@ interface MarsTicketInterface extends ExtensibleDataInterface
 	 * @return \TrainningVivek\CrudModule\Api\Data\MarsTicketInterface
 	 */
 	public function setTicketLang($ticketlang);
+
+	/**
+	 * @param string $ticketdescription
+	 * @return \TrainningVivek\CrudModule\Api\Data\MarsTicketInterface
+	 */
+	public function setTicketDescription($ticketdescription);
+
+	/**
+	 * @param string $ticketColor
+	 * @return \TrainningVivek\CrudModule\Api\Data\MarsTicketInterface
+	 */
+	public function setTicketColor($ticketColor);
 
 	/**
 	 * @param string $createdAt

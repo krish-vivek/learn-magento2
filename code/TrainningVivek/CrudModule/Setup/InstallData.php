@@ -19,15 +19,17 @@ class InstallData implements InstallDataInterface
     {
     	$setup->startSetup();
 
-    	$setup->getConnection()->insert(
-    		$setup->getTable('mars_ticket'),
-    		['name' => 'Ticket-1', 'status' => true, 'ticket_type' => 1, 'ticket_tags' => 'tag1, tag2','ticket_lang' => '1, 2']
-    	);
+        if(version_compare($context->getVersion(), '0.0.3', '=')) {
+        	$setup->getConnection()->insert(
+        		$setup->getTable('mars_ticket'),
+        		['name' => 'Ticket-1', 'status' => true, 'ticket_type' => 1, 'ticket_tags' => 'tag1, tag2','ticket_lang' => '1, 2']
+        	);
 
-    	$setup->getConnection()->insert(
-    		$setup->getTable('mars_ticket'),
-    		['name' => 'Ticket-2', 'status' => false, 'ticket_type' => 2, 'ticket_tags' => 'tag1,tag2','ticket_lang' => '1']
-    	);
+        	$setup->getConnection()->insert(
+        		$setup->getTable('mars_ticket'),
+        		['name' => 'Ticket-2', 'status' => false, 'ticket_type' => 2, 'ticket_tags' => 'tag1,tag2','ticket_lang' => '1']
+        	);
+        }
 
     	$setup->endSetup();
     }
