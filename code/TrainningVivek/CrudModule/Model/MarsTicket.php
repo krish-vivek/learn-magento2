@@ -60,6 +60,22 @@ class MarsTicket extends AbstractExtensibleModel implements MarsTicketInterface
 	{
 		return $this->getData(MarsTicketInterface::TICKET_LANG);
 	}
+
+	/**
+	 * @return string
+	 */
+	public function getTicketDescription()
+	{
+		return $this->getData(MarsTicketInterface::TICKET_DESCRIPTION);
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getTicketColor()
+	{
+		return $this->getData(MarsTicketInterface::TICKET_COLOR);
+	}
 	
 	/**
 	 * @return string
@@ -129,6 +145,24 @@ class MarsTicket extends AbstractExtensibleModel implements MarsTicketInterface
 	public function setTicketLang($ticketlang)
 	{
 		$this->setData(MarsTicketInterface::TICKET_LANG, $ticketlang);
+	}
+
+	/**
+	 * @param string $ticketdescription
+	 * @return \TrainningVivek\CrudModule\Api\Data\MarsTicketInterface
+	 */
+	public function setTicketDescription($ticketdescription)
+	{
+		$this->setData(MarsTicketInterface::TICKET_DESCRIPTION, $ticketdescription);
+	}
+
+	/**
+	 * @param string $ticketColor
+	 * @return \TrainningVivek\CrudModule\Api\Data\MarsTicketInterface
+	 */
+	public function setTicketColor($ticketColor)
+	{
+		$this->setData(MarsTicketInterface::TICKET_COLOR, $ticketColor);
 	}
 
 	/**

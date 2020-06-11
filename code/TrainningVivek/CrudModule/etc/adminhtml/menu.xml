@@ -7,7 +7,7 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="TrainningVivek_CrudModule::member" title="Mars Tickets" translate="title" module="TrainningVivek_CrudModule" sortOrder="200" resource="TrainningVivek_CrudModule::parent"/>
-        <add id="TrainningVivek_CrudModule::mars_ticket" title="Mars Tickets" translate="title" module="TrainningVivek_CrudModule" sortOrder="200" parent="TrainningVivek_CrudModule::member" action="mars/ticket/index" resource="TrainningVivek_CrudModule::parent"/>
+        <add id="TrainningVivek_CrudModule::ticket" title="Mars Tickets" translate="title" module="TrainningVivek_CrudModule" sortOrder="200" resource="TrainningVivek_CrudModule::parent"/>
+        <add id="TrainningVivek_CrudModule::mars_ticket" title="Mars Tickets" translate="title" module="TrainningVivek_CrudModule" sortOrder="200" parent="TrainningVivek_CrudModule::ticket" action="mars/ticket/index" resource="TrainningVivek_CrudModule::parent"/>
     </menu>
 </config>
