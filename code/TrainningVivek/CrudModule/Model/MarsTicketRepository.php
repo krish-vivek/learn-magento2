@@ -46,7 +46,7 @@ class MarsTicketRepository implements MarsTicketRepositoryInterface
 	}
 
 	/**
-	 * @param \TrainningVivek\CrudModule\Api\Data\MarsTicketInterface $$ticket
+	 * @param \TrainningVivek\CrudModule\Api\Data\MarsTicketInterface $ticket
 	 * @return \TrainningVivek\CrudModule\Api\Data\MarsTicketInterface
 	 */
 	public function saveMarsTicket(\TrainningVivek\CrudModule\Api\Data\MarsTicketInterface $ticket)
@@ -86,5 +86,14 @@ class MarsTicketRepository implements MarsTicketRepositoryInterface
 		$searchResults->setItems($collection->getData());
 		$searchResults->setTotalCount($collection->getSize());
 		return $searchResults;
+	}
+
+	/**
+	 * @param \Magento\Catalog\Api\Data\ProductInterface $product
+	 * @return void
+	 */
+	public function updateProduct(\Magento\Catalog\Api\Data\ProductInterface $product)
+	{
+		echo "<pre>";print_r($product);exit;
 	}
 }
