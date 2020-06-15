@@ -1,0 +1,83 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \TrainningVivek\CrudModule\Block\AddTicket $block */
+
+$ticket = $block->getTicket();
+$checked = '';
+$statusYes = '';
+$statusNo = '';
+if (!empty($block->getTicket())) {
+    if ($block->getTicket()->getTicketLang()) {
+        $checked = "checked";
+    }
+    if ($block->getTicket()->getStatus() == 1) {
+        $statusYes = "checked";   
+    } else {
+        $statusNo = "checked";  
+    }
+}
+
+
+
+?>
+<form class="form add-ticket"
+      action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>"
+      id="add-ticket-form"
+      method="post"
+      data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+      data-mage-init='{"validation":{}}'>
+    <?php if (!empty($block->getTicket())) : ?>
+        <input type="hidden" name="ticket[ticket_id]" value="<?= $block->escapeUrl($block->getTicket()->getId()) ?>">
+    <?php endif ?>
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?= $block->escapeHtml(__('Add Ticket')) ?></span></legend><br />
+        <div class="field name required">
+            <label class="label" for="name"><span><?= $block->escapeHtml(__('Name')) ?></span></label>
+            <div class="control">
+                <input name="ticket[name]" id="name" title="<?= $block->escapeHtmlAttr(__('Name')) ?>" value="<?= !empty($block->getTicket())?$block->escapeHtmlAttr($block->getTicket()->getName()):'' ?>" class="input-text" type="text" data-validate="{required:true}"/>
+            </div>
+        </div>
+        <div class="field ticket-lang">
+            <input type="checkbox" name="ticket[ticket_lang]" title="<?php /* @escapeNotVerified */ echo __('Ticket High Priority') ?>" value="1" id="ticket_lang" <?= $checked ?> class="checkbox">
+            <label for="ticket_lang" class="label"><span><?php /* @escapeNotVerified */ echo __('Ticket High Priority') ?></span></label>
+        </div>
+
+        <div class="field status">
+            <h3><span><?= $block->escapeHtml(__('Status')) ?></span></h3>
+            <input type="radio" name="ticket[status]" title="<?php /* @escapeNotVerified */ echo __('yes') ?>" value="1" id="yes" <?= $statusYes ?> class="radio">
+            <label for="yes" class="label"><span><?php /* @escapeNotVerified */ echo __('Yes') ?></span></label>
+            <input type="radio" name="ticket[status]" title="<?php /* @escapeNotVerified */ echo __('No') ?>" value="0" id="status" <?= $statusNo ?> class="radio">
+            <label for="no" class="label"><span><?php /* @escapeNotVerified */ echo __('No') ?></span></label>
+        </div>
+        <div class="field ticket_type">
+            <label for="ticket_type-select" class="label"><span><?php /* @escapeNotVerified */ echo __('Ticket Type') ?></span></label>
+            <?= $block->getTypeSelect(!empty($block->getTicket())?$block->getTicket()->getTicketType():'') ?>
+        </div>
+        
+        <div class="field ticket_tags">
+            <label for="ticket_tags-select" class="label"><span><?php /* @escapeNotVerified */ echo __('Ticket Tags') ?></span></label>
+            <?= $block->getTagsSelect(!empty($block->getTicket())?$block->getTicket()->getTicketTags():'') ?>
+            
+        </div>
+        <div class="field ticket_description">
+            <label for="ticket_tags-select" class="label"><span><?php /* @escapeNotVerified */ echo __('Ticket Description') ?></span></label>
+            <textarea class="ticket_description-textarea" name="ticket[ticket_description]" cols="15" rows="5"><?= !empty($block->getTicket())? $block->getTicket()->getTicketDescription() : '' ?></textarea>
+        </div>
+        <div class="field ticket_color">
+            <label for="ticket_color-select" class="label"><span><?php /* @escapeNotVerified */ echo __('Ticket Color') ?></span></label>
+            <input type="text" class="admin__control-text colorpicker-input" name="ticket[ticket_color]" value="<?= !empty($block->getTicket())? $block->escapeHtmlAttr($block->getTicket()->getTicketColor()):'' ?>" >
+        </div>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <input type="hidden" name="hideit" id="hideit" value="" />
+            <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+                <span><?= $block->escapeHtml(__('Submit')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>

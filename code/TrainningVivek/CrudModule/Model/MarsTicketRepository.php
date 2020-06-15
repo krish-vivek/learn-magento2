@@ -40,8 +40,9 @@ class MarsTicketRepository implements MarsTicketRepositoryInterface
 	 */
 	public function getMarsTicketById($id)
 	{
-		$ticket = $this->marsTicketFactory->create();
-		return $ticket->load($id);
+		$collection = $this->marsTicketFactory->create()->getCollection();
+		$collection = $collection->addFieldToFilter('ticket_id', $id);
+		return $collection->getData();
 	}
 
 	/**

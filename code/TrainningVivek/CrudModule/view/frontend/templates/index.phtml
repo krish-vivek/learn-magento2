@@ -1,0 +1,32 @@
+<?php
+
+$getData = $block->getTicketData();
+?>
+<h2>Welcome to Mars Ticket</h2>
+
+<div class="add-ticket"><a class="action remind mars-ticket-add" href="<?= $block->escapeUrl($block->getAddTicketUrl()) ?>"><span><?= $block->escapeHtml(__('Add Ticket')) ?></span></a></div>
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Status</th>
+			<th>Ticket Type</th>
+			<th>Ticket Priority</th>
+			<th>Ticket Color</th>
+		</tr>
+	</thead>
+<?php foreach ($getData as $key => $value) : ?>
+	<tr>
+		<td><?php echo $value['name']; ?></td>
+		<td><?php echo $block->getStatus($value['status']); ?></td>
+		<td><?php echo $block->getTicketType($value['ticket_type']); ?></td>
+		<td><?php echo $value['ticket_lang']; ?></td>
+		<td><?php echo $value['ticket_color']; ?></td>
+		<td class="box-actions">
+	        <a class="action edit" href="<?= $block->escapeUrl($block->getTicketEditUrl($value['ticket_id'])) ?>">
+	            <span><?= $block->escapeHtml(__('Edit Ticket Data')) ?></span>
+	        </a>
+	    </td>
+	</tr>
+<?php endforeach; ?>
+</table>
