@@ -13,4 +13,39 @@
             <resource ref="anonymous"/>
         </resources>
     </route>
+
+    <route url="/V1/mars_ticket/:id" method="GET">
+        <service class="TrainningVivek\CrudModule\Api\MarsTicketRepositoryInterface" method="getMarsTicketById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/mars_ticket" method="POST">
+        <service class="TrainningVivek\CrudModule\Api\MarsTicketRepositoryInterface" method="saveMarsTicket"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/mars_ticket/:id" method="PUT">
+        <service class="TrainningVivek\CrudModule\Api\MarsTicketRepositoryInterface" method="saveMarsTicket"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/mars_ticket/:id" method="DELETE">
+        <service class="TrainningVivek\CrudModule\Api\MarsTicketRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/mars_ticket/search" method="GET">
+        <service class="TrainningVivek\CrudModule\Api\MarsTicketRepositoryInterface" method="getSearchResultsList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
 </routes>
