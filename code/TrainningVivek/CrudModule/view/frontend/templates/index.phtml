@@ -5,6 +5,7 @@ $getData = $block->getTicketData();
 <h2>Welcome to Mars Ticket</h2>
 
 <div class="add-ticket"><a class="action remind mars-ticket-add" href="<?= $block->escapeUrl($block->getAddTicketUrl()) ?>"><span><?= $block->escapeHtml(__('Add Ticket')) ?></span></a></div>
+<div class="add-ticket-api"><a class="action remind mars-ticket-add-api" href="<?= $block->escapeUrl($block->getAddTicketApiUrl()) ?>"><span><?= $block->escapeHtml(__('Add Ticket Through Api')) ?></span></a></div>
 <table>
 	<thead>
 		<tr>

@@ -27,6 +27,16 @@ class Index extends Template
     }
 
     /**
+     * Retrieve Add Ticket URL
+     *
+     * @return string
+     */
+    public function getAddTicketApiUrl()
+    {
+        return $this->getUrl('marsfrticket/form/addticketapi');
+    }
+
+    /**
      * Generate and return "Edit Ticket" URL.
      *
      *

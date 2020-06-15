@@ -48,4 +48,11 @@
             <resource ref="anonymous"/>
         </resources>
     </route>
+
+    <route url="/V1/mars_ticket/updateProduct" method="POST">
+        <service class="TrainningVivek\CrudModule\Api\MarsTicketRepositoryInterface" method="updateProduct"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
 </routes>
