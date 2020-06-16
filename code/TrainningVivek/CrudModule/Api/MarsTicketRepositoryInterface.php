@@ -33,10 +33,13 @@ interface MarsTicketRepositoryInterface
 	 */
 	public function getSearchResultsList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria);
 
-	/**
-	 * @param \Magento\Catalog\Api\Data\ProductInterface $product
-	 * @return void
-	 */
-	public function updateProduct(\Magento\Catalog\Api\Data\ProductInterface $product);
+	 /**
+     * Updates the specified product from the request payload.
+     *
+     * @api
+     * @param mixed $products
+     * @return boolean
+     */
+	public function updateProduct($products);
 
 }

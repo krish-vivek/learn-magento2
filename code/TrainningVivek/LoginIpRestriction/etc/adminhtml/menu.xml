@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="TrainningVivek_LoginIpRestriction::customerip" title="Customer Ip Detail" translate="title" module="TrainningVivek_LoginIpRestriction" sortOrder="200" resource="TrainningVivek_LoginIpRestriction::parent"/>
+        <add id="TrainningVivek_LoginIpRestriction::ipaddress" title="Customer IP" translate="title" module="TrainningVivek_LoginIpRestriction" sortOrder="200" parent="TrainningVivek_LoginIpRestriction::customerip" action="ipcustomer/ipaddress/index" resource="TrainningVivek_LoginIpRestriction::parent"/>
+    </menu>
+</config>
