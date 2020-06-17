@@ -10,5 +10,8 @@
         <route id="ipcustomer" frontName="ipcustomer">
             <module name="TrainningVivek_LoginIpRestriction" />
         </route>
+        <route id="logging" frontName="logging">
+            <module name="TrainningVivek_LoginIpRestriction" />
+        </route>
     </router>
 </config>

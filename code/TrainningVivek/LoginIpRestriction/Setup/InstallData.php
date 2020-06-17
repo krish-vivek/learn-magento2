@@ -27,15 +27,15 @@ class InstallData implements \Magento\Framework\Setup\InstallDataInterface
     {
         $eavSetup = $this->eavSetupFactory->create(['setup' => $setup]);
 
-        $eavSetup->removeAttribute(Customer::ENTITY, "location");
+        $eavSetup->removeAttribute(Customer::ENTITY, "ip_address");
 
         $attributeSetId = $eavSetup->getDefaultAttributeSetId(Customer::ENTITY);
         $attributeGroupId = $eavSetup->getDefaultAttributeGroupId(Customer::ENTITY);
 
-        $eavSetup->addAttribute(Customer::ENTITY, 'location', [
+        $eavSetup->addAttribute(Customer::ENTITY, 'ip_address', [
             // Attribute parameters
             'type' => 'varchar',
-            'label' => 'Location',
+            'label' => 'Ip Address',
             'input' => 'text',
             'required' => true,
             'visible' => true,
@@ -44,9 +44,10 @@ class InstallData implements \Magento\Framework\Setup\InstallDataInterface
             'position' => 990,
             'system' => 0,
             'is_used_in_grid' => true,
+            'is_visible_in_grid'    => true
         ]);
         
-        $attribute = $this->eavConfig->getAttribute(Customer::ENTITY, 'location');
+        $attribute = $this->eavConfig->getAttribute(Customer::ENTITY, 'ip_address');
         $attribute->setData('attribute_set_id', $attributeSetId);
         $attribute->setData('attribute_group_id', $attributeGroupId);
 

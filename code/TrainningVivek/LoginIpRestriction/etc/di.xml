@@ -28,4 +28,35 @@
         </arguments>
     </virtualType>
     
+    <virtualType name="LoggingGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">TrainningVivek\LoginIpRestriction\Model\ResourceModel\LoggingLog\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">LogGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+    
+    <virtualType name="LogGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+      <arguments>
+          <argument name="appliers" xsi:type="array">
+              <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\RegularFilter</item>
+              <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\FullText</item>
+          </argument>
+      </arguments>
+    </virtualType>
+    
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="logging_log_listing_data_source" xsi:type="string">TrainningVivek\LoginIpRestriction\Model\Resource\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="TrainningVivek\LoginIpRestriction\Model\Resource\Grid\Collection" 
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">logging_log</argument>
+            <argument name="resourceModel" xsi:type="string">TrainningVivek\LoginIpRestriction\Model\ResourceModel\LoggingLog</argument>
+        </arguments>
+    </virtualType>
+    
 </config>
