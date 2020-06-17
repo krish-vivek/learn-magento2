@@ -8,6 +8,8 @@ use Magento\Framework\App\Action\Context;
 use Magento\Framework\HTTP\PhpEnvironment\RemoteAddress;
 use Magento\Framework\Stdlib\Cookie\PhpCookieManager;
 use Magento\Framework\Stdlib\Cookie\CookieMetadataFactory;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use TrainningVivek\LoginIpRestriction\Model\LoggingLog;
 
 class CustomerLogin implements ObserverInterface
 {
@@ -28,6 +30,12 @@ class CustomerLogin implements ObserverInterface
      */
     private $cookieMetadataManager;
 
+    protected $scopeConfig;
+
+    protected $resultRedirectFactory;
+
+    protected $loggingLog;
+
     /**
      * @param Session $customerSession
      */
@@ -36,36 +44,59 @@ class CustomerLogin implements ObserverInterface
         Session $customerSession,
         RemoteAddress $remoteAddress,
         PhpCookieManager $cookieMetadataManager,
-        PhpCookieManager $cookieMetadataFactory
+        CookieMetadataFactory $cookieMetadataFactory,
+        ScopeConfigInterface $scopeConfig,
+        \Magento\Framework\Message\ManagerInterface $messageManager,
+        \Magento\Framework\Controller\Result\RedirectFactory $resultRedirectFactory,
+        LoggingLog $loggingLog
     ) {
     	$this->cookieMetadataFactory = $cookieMetadataFactory;
     	$this->cookieMetadataManager = $cookieMetadataManager;
         $this->session = $customerSession;
         $this->remoteAddress = $remoteAddress;
+        $this->scopeConfig = $scopeConfig;
+        $this->messageManager = $messageManager;
+        $this->resultRedirectFactory = $resultRedirectFactory;
+        $this->loggingLog = $loggingLog;
     }
 
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-    	$allowIp = ['202.131.115.180'];
+        $restrictIpAdd = [];
+        $restrictIp = $this->scopeConfig->getValue('ip_section_customer/ip_customer/ip_address');
+        if (!empty($restrictIp)) {
+            $restrictIpAdd = explode(',', $restrictIp);
+        }
 
         $customer = $observer->getEvent()->getCustomer();
+        $ip = $customer->getIpAddress();
 
-        $ip = $this->remoteAddress->getRemoteAddress();
+        $this->loggingLog->setEmail($customer->getEmail());
+        $this->loggingLog->setIp($ip);
+        $this->loggingLog->setEntityId($customer->getId());
+        try{
+            $this->loggingLog->save();
+        } catch (\Magento\Framework\Exception\LocalizedException $e) {
+            $messages = $e->getMessage();
+        }
         
-        if (!in_array($ip, $allowIp)) {
-        	$lastCustomerId = $this->session->getId();
-	        $this->session->logout()->setBeforeAuthUrl($this->_redirect->getRefererUrl())
-	            ->setLastCustomerId($lastCustomerId);
-	        if ($this->getCookieManager()->getCookie('mage-cache-sessid')) {
-	            $metadata = $this->getCookieMetadataFactory()->createCookieMetadata();
-	            $metadata->setPath('/');
-	            $this->getCookieManager()->deleteCookie('mage-cache-sessid', $metadata);
-	        }
+        if (in_array($ip, $restrictIpAdd)) {
+            $lastCustomerId = $this->session->getId();
+            $this->session->logout()->setLastCustomerId($lastCustomerId);
+            if ($this->cookieMetadataManager->getCookie('mage-cache-sessid')) {
+                $metadata = $this->cookieMetadataFactory->createCookieMetadata();
+                $metadata->setPath('/');
+                $this->cookieMetadataManager->deleteCookie('mage-cache-sessid', $metadata);
+            }
 
-	        /** @var \Magento\Framework\Controller\Result\Redirect $resultRedirect */
-	        $resultRedirect = $this->resultRedirectFactory->create();
-	        $resultRedirect->setPath('*/*/logoutSuccess');
-	        return $resultRedirect;
+            // HERE IS MY CODE
+            $message = "your ip address is blocked";
+            $this->messageManager->addError($message);
+
+            /** @var \Magento\Framework\Controller\Result\Redirect $resultRedirect */
+            $resultRedirect = $this->resultRedirectFactory->create();
+            $resultRedirect->setPath('*/*/logoutSuccess');
+            return $resultRedirect;
         }
     }
 }

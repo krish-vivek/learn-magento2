@@ -17,7 +17,7 @@ class DataProvider extends AbstractDataProvider
         array $meta = [],
         array $data = []
     ) {
-    	$this->collection = $collectionFactory->create();
+    	$this->collection = $collectionFactory->create()->addAttributeToSelect('*');
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
 
