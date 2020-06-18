@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="3columns" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+    	<referenceBlock name="catalog.compare.sidebar" remove="true"/> 
+        <referenceBlock name="wishlist_sidebar" remove="true" />
+        <referenceContainer name="content">
+            <block name="static_block" class="Magento\Cms\Block\Block">
+            	<arguments>
+                    <argument name="block_id" xsi:type="string">custom_block_center</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="sidebar.additional">
+            <block name="static_right_block" class="Magento\Cms\Block\Block">
+            	<arguments>
+                    <argument name="block_id" xsi:type="string">custom_block_right</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="sidebar.main">
+            <block name="static_left_block" class="Magento\Cms\Block\Block">
+            	<arguments>
+                    <argument name="block_id" xsi:type="string">custom_block_left</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+ </page>
