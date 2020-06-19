@@ -1,0 +1,23 @@
+<?php
+
+?>
+<?php if ($block->fatherIsAllowed()): ?>
+<div class="field father-name required">
+    <label class="label" for="father-name">
+      <span><?= $block->escapeHtml(__("Father's Name")) ?></span>
+    </label>
+    <div class="control">
+       <input type="text" name="father_name" id="father_name" value="<?= $block->escapeHtmlAttr(!empty($block->getCustomer()->getCustomAttribute('father_name'))?$block->getCustomer()->getCustomAttribute('father_name')->getValue():'') ?>" title="<?= $block->escapeHtmlAttr(__("Father's Name")) ?>" class="input-text" data-validate="{required:true}">
+    </div>
+</div>
+<?php endif; ?>
+<?php if ($block->motherIsAllowed()): ?>
+<div class="field mother-name required">
+    <label class="label" for="mother-name">
+      <span><?= $block->escapeHtml(__("Mother's Name")) ?></span>
+    </label>
+    <div class="control">
+       <input type="text" name="mother_name" id="mother_name" value="<?= $block->escapeHtmlAttr(!empty($block->getCustomer()->getCustomAttribute('mother_name'))?$block->getCustomer()->getCustomAttribute('mother_name')->getValue():'') ?>" title="<?= $block->escapeHtmlAttr(__("Mother's Name")) ?>" class="input-text" data-validate="{required:true}">
+    </div>
+</div>
+<?php endif; ?>
