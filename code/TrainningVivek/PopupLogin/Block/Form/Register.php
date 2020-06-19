@@ -28,6 +28,7 @@ class Register extends \Magento\Directory\Block\Data
      */
     protected $registration;
 
+
     /**
      * Constructor
      *
@@ -165,5 +166,37 @@ class Register extends \Magento\Directory\Block\Data
     public function customerIsAlreadyLoggedIn()
     {
         return (bool)$this->httpContext->getValue(\Magento\Customer\Model\Context::CONTEXT_AUTH);
+    }
+
+    /**
+     * Checking Module Enable
+     *
+     * @return bool
+     */
+    public function checkExtendedModuleEnable()
+    {
+        return $this->moduleManager->isOutputEnabled('TrainningVivek_PopupLogin');
+    }
+
+     /**
+     * Checking field allowed or not
+     *
+     * @return bool
+     */
+    public function fatherIsAllowed()
+    {
+        $fatherNameAllowed = $this->_scopeConfig->getValue('additinal_fields_section_customer/additinal_fields/father_name');
+        return $fatherNameAllowed;
+    }
+
+    /**
+     * Checking field allowed or not
+     *
+     * @return bool
+     */
+    public function motherIsAllowed()
+    {
+        $motherNameAllowed = $this->_scopeConfig->getValue('additinal_fields_section_customer/additinal_fields/mother_name');
+        return $motherNameAllowed;
     }
 }

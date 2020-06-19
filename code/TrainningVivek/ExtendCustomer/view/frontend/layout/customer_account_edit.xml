@@ -1,0 +1,7 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="form.additional.info">
+            <block class="TrainningVivek\ExtendCustomer\Block\AdditionalFields" name="form_additional_info_customer" template="TrainningVivek_ExtendCustomer::additional.phtml"/>
+        </referenceContainer>
+    </body>
+</page>
