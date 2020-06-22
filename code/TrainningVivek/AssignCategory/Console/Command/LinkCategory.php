@@ -13,10 +13,12 @@ class LinkCategory extends Command
         
     public function __construct(
         \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
-        \Magento\Catalog\Api\CategoryLinkManagementInterface $categoryLinkManagement
+        \Magento\Catalog\Api\CategoryLinkManagementInterface $categoryLinkManagement,
+        \Magento\Catalog\Model\ProductFactory $productFactory
     ) {    
         $this->_productCollectionFactory = $productCollectionFactory;
         $this->categoryLinkManagement = $categoryLinkManagement;
+        $this->_productFactory = $productFactory;
         parent::__construct();
     }
 
@@ -35,11 +37,23 @@ class LinkCategory extends Command
         //$collection->setPageSize(); // fetching only 3 products
         if (!empty($collection->getData())) {
             foreach ($collection->getData() as $key => $value) {
+                $cats = [];
+                $commaSeperated = '';
+                $product = $this->_productFactory->create()->load($value['entity_id']);
+                $cats = $product->getCategoryIds();
+                if (!in_array('41', $cats)) {
+                    $mergeCat = array_merge($cats, ['41']);
+                } else {
+                    $mergeCat = $cats;
+                }
+                if (!empty($mergeCat)) {
+                    $commaSeperated = implode(',', $mergeCat);
+                }
                 $this->categoryLinkManagement->assignProductToCategories(
                     $value['sku'],
-                    ['41']
+                    $mergeCat
                 );
-                $output->writeln("Category 41 is assign to product ".$value['sku']);
+                $output->writeln("Category ".$commaSeperated." is assign to product ".$value['sku']);
             }
         }
     }
