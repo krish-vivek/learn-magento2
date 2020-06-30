@@ -1,0 +1,89 @@
+<?php
+
+?>
+<link href="<?php echo $block->getAssetUrl('TrainningVivek_WholesaleFastOrder::css/quickorder.css'); ?>" type="text/css" rel="stylesheet" />
+<div class="quick-shop-content cms-content" id="quick-order">
+    <p>If you've received one of our catalogues and know the codes of the products you would like to order, you can use our helpful Quick Shop function. Simply enter the quantity required, product code(s) and then click Add to Cart. </p>
+
+	<form method="post" action="https://magento2.demo.magetop.com/demo-full/quick-order/index/skucart/">
+        <input type="hidden" name="autocomplete" id="autocomplete" value="3">
+        <input type="hidden" name="maxresultstoshow" id="maxresultstoshow" value="10">
+    	<input type="hidden" name="aspbn" id="aspbn" value="1">
+    	<input type="hidden" name="product-url" id="product-url" value="<?= $block->escapeUrl($block->getProductUrl()) ?>">
+        <fieldset>
+    		<table id="quick-shop-table" class="sku data-table">
+    			<colgroup>
+    				<col>
+    				<col width="12%">
+    				<col>
+    				<col width="12%">
+    				<col width="12%">
+    			</colgroup>
+    			<thead>
+    				<tr>
+    					<th class="first">Code</th>
+    					<th>Single Unit Qty</th>
+                        <th>Image</th>
+    					<th>Product</th>
+    					<th>Availability</th>
+    					<th>Total Price</th>
+                        <th class="last">Delete</th>
+    				</tr>
+    			</thead>
+    			<tbody>
+    				<?php for ($i=1; $i < 10; $i++) :?>
+    					<tr id="<?= $i ?>">
+	                        <td width="20%">
+	                            <span class="cell-label"></span>
+	                            <input type="text" stt="<?= $i ?>" class="input-text" js="code" name="cartsku[code<?= $i ?>]" id="code<?= $i ?>" value="" size="30">
+	                            <center><div class="imgloader" id="imgloader<?= $i ?>"><img src="<?= $block->escapeUrl($block->getImageUrl()) ?>"></div></center>
+	                            <div class="result" id="result<?=$i?>" style="margin-top: 5px">
+	                                <table style="border: 1px solid silver">              
+	                                
+	                                </table>
+	                            </div>
+	                        </td>
+	                        <td>
+	                            <span class="cell-label"></span>
+	                            <input type="text" name="cartsku[suq<?= $i ?>]" id="suq<?= $i ?>" value="" class="input-text" js="qtyy" stt="<?= $i ?>" size="11">
+	                        </td>
+	                        <td>
+	                             <img class="thumbnail-product" alt="" src="" id="img<?= $i ?>">
+	                        </td>
+	                        <td>
+	                            <span class="cell-label"></span>
+	                            <input type="text" class="input-text" name="cartsku[product<?= $i ?>]" id="product<?= $i ?>" value="">
+	                        </td>
+	                        <td>
+	                            <span class="cell-label"></span>
+	                            <input type="text" class="input-text" name="cartsku[availability<?= $i ?>]" id="availability<?= $i ?>" value="">
+	                        </td>
+	                        <td>
+	                            <span class="cell-label"></span>
+	                            <input type="text" class="input-text" name="cartsku[total<?= $i ?>]" id="total<?= $i ?>" value="">
+	                        </td>
+	                        <td>
+	                            <span class="cell-label"></span>
+	                            <input type="button" value="X" id="delete<?= $i ?>" stt="<?= $i ?>" class="delete-quick" style="width: 33px;height: 33px">
+	                        </td>
+	                        <input type="hidden" id="price<?= $i ?>" value="">
+	                        <input type="hidden" id="stock<?= $i ?>" value="">
+                    	</tr>
+    				<?php endfor ; ?>
+                    <input type="hidden" name="soluong" id="soluong" value="5">		
+    			</tbody>
+    		</table>
+    	</fieldset>
+    	<button class="button btn-quick-cart" type="submit" name="addcart"><span><span>Add to Cart</span></span></button>
+    </form>
+</div>
+    <script type="text/x-magento-init">
+        {
+            "#quick-order": {
+                "TrainningVivek_WholesaleFastOrder/js/action/quick-order-product-select": {
+                    "popupTitle": "<?php /* @escapeNotVerified */ echo __('Products'); ?>",
+                    "innerWidth": "600"
+                }
+            }
+        }
+    </script>

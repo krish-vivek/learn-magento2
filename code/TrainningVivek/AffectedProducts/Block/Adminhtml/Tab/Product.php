@@ -141,12 +141,11 @@ class Product extends \Magento\Backend\Block\Widget\Grid\Extended
         $getCurrentRule = $this->_coreRegistry->registry('current_promo_catalog_rule');
         if (!empty($getCurrentRule->getConditions())) {
             $conditions = $getCurrentRule->getConditions()->asArray();
-            //echo "<pre>";print_r($conditions);exit;
             if (!empty($conditions['conditions'])) {
                 foreach ($conditions['conditions'] as $key => $value) {
                     switch ($value['attribute']) {
                         case 'category_ids':
-                            $collection->addCategoriesFilter(array('in' => array($value['value'])));
+                            $collection->addCategoriesFilter(array('in' => explode(',',$value['value'])));
                             break;
                         default:
                             if (is_array($value['value'])) {
