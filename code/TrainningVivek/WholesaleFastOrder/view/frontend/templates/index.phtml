@@ -5,7 +5,7 @@
 <div class="quick-shop-content cms-content" id="quick-order">
     <p>If you've received one of our catalogues and know the codes of the products you would like to order, you can use our helpful Quick Shop function. Simply enter the quantity required, product code(s) and then click Add to Cart. </p>
 
-	<form method="post" action="https://magento2.demo.magetop.com/demo-full/quick-order/index/skucart/">
+	<form method="post" action="<?php /* @escapeNotVerified */ echo $block->getPostActionUrl() ?>">
         <input type="hidden" name="autocomplete" id="autocomplete" value="3">
         <input type="hidden" name="maxresultstoshow" id="maxresultstoshow" value="10">
     	<input type="hidden" name="aspbn" id="aspbn" value="1">
@@ -75,6 +75,19 @@
     		</table>
     	</fieldset>
     	<button class="button btn-quick-cart" type="submit" name="addcart"><span><span>Add to Cart</span></span></button>
+    </form>
+
+    <div class="clearer"></div>
+    <h3 class="head">Import Order</h3>
+    <a href="https://magento2.demo.magetop.com/demo-full/pub/static/version1587179219/frontend/Magento/luma/en_US/Magetop_Quickorder/files/import_items_to_cart.csv" class="download"><span class="xls-icon"></span>Download Template (.csv)</a>
+    <form enctype="multipart/form-data" method="post" action="<?php /* @escapeNotVerified */ echo $block->getPostImportUrl() ?>" id="import_form" novalidate="novalidate">
+        <div class="import-file">
+            <label for="filename">Import File:</label>
+            <div class="input-box">
+                <input type="file" name="filename" id="filename" size="20" value="" data-validate="{required:true}">                
+            </div>
+        </div>
+        <button class="button import btn-quick-import" type="submit"><span><span>IMPORT</span></span></button>
     </form>
 </div>
     <script type="text/x-magento-init">
