@@ -44,12 +44,14 @@ class Items extends \Magento\Framework\App\Action\Action
         \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
         \Magento\Framework\Controller\Result\RawFactory $resultRawFactory,
         \Magento\Framework\Data\Form\FormKey\Validator $formKeyValidator,
-        \Magento\Catalog\Model\ProductFactory $productFactory
+        \Magento\Catalog\Model\ProductFactory $productFactory,
+        \Magento\Store\Model\StoreManagerInterface $storeManager
     ) {
         $this->resultJsonFactory = $resultJsonFactory;
         $this->resultRawFactory = $resultRawFactory;
         $this->formKeyValidator = $formKeyValidator;
         $this->_productFactory = $productFactory;
+        $this->_storeManager = $storeManager;
         parent::__construct($context);
     }
 
@@ -62,6 +64,9 @@ class Items extends \Magento\Framework\App\Action\Action
     {
         $httpBadRequestCode = 400;
 
+        $baseUrl = $this->_storeManager->getStore()->getBaseUrl();
+        $baseUrl = str_replace('/'.$this->_storeManager->getDefaultStoreView()->getCode().'/','/', $baseUrl);
+
          /** @var \Magento\Framework\Controller\Result\Raw $resultRaw */
         $resultRaw = $this->resultRawFactory->create();
         if ($this->getRequest()->getMethod() !== 'POST' || !$this->getRequest()->isXmlHttpRequest()) {
@@ -73,42 +78,35 @@ class Items extends \Magento\Framework\App\Action\Action
         $sku = (string)$this->getRequest()->getPost('code');
 
         $collection = $this->_productFactory->create()->getCollection();
+        $collection->addFieldToSelect('*');
+        $collection->addAttributeToSelect('*');
 
-        $collection->getSelect()->join(
-             array('name' => $collection->getTable('catalog_product_entity_varchar')),
-             'e.entity_id = name.entity_id',
-             array('value')
-        );
-
-
-        /*----Join Query for getting value id from media_gallery_value table----- */
-
-        $collection->getSelect()->join(
-             array('value_entity' => $collection->getTable('catalog_product_entity_media_gallery_value')),
-             'e.entity_id = value_entity.entity_id',
-             array('value_id')
-        );
-
-        /*----Join Query for getting value from media_gallery table using value_id----- */
-
-        $collection->getSelect()->join(
-            array('value_data' => $collection->getTable('catalog_product_entity_media_gallery')),
-            'value_entity.value_id = value_data.value_id',
-            array('value_data.value')
-        );
-
-        /*----Here, you can get the unique product ids wich have images ----- */
-
-        $collection->getSelect()
-            ->reset(\Zend_Db_Select::COLUMNS)
-            ->columns(array('entity_id','sku','name.value','value_data.value as image'))     
-            ->group(array('entity_id'));
-
+        $collection->joinField('qty',
+             'cataloginventory_stock_item',
+             'qty',
+             'product_id=entity_id',
+             '{{table}}.stock_id=1',
+             'left'
+         );
+        
         $collection->addAttributeToFilter([['attribute' => 'sku', 'like' => '%'.$sku.'%']]);
+
+        $productArray = [];
+        $i = 0;
+        foreach ($collection as $key => $row) {
+            $productArray[$i]['id'] = $row['entity_id'];
+            $productArray[$i]['sku'] = $row['sku'];
+            $productArray[$i]['name'] = $row['name'];
+            $productArray[$i]['image'] = $baseUrl.'pub/media/catalog/product'.$row['image'];
+            $productArray[$i]['price'] = $row['price'];
+            $productArray[$i]['qty'] = $row['qty'];
+            $i++;
+        }
+
 
         $response = [
             'errors' => false,
-            'data' => $collection->getData()
+            'data' => $productArray
         ];
 
         /** @var \Magento\Framework\Controller\Result\Json $resultJson */

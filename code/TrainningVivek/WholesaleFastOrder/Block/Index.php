@@ -50,5 +50,25 @@ class Index extends Template
     {
         return $this->getUrl('quickorder/product_ajax/items');
     }
+
+    /**
+     * Retrieve the form posting URL
+     *
+     * @return string
+     */
+    public function getPostActionUrl()
+    {
+        return $this->getUrl('quickorder/page/addtocart');
+    }
+
+    /**
+     * Retrieve the form posting URL
+     *
+     * @return string
+     */
+    public function getPostImportUrl()
+    {
+        return $this->getUrl('quickorder/page/importtocart');
+    }
     
 }
