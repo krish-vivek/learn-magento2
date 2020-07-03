@@ -1,0 +1,11 @@
+<?php
+	$product = $block->getProduct();
+	$customIcon = $product->getResource()->getAttribute('magazinelogo')->getFrontend()->getValue($product);
+?>
+<div id="role-image">
+	<?php if(!empty($customIcon)) :?>
+		<span>
+            <img src="<?= $newurl.'/pub/media/catalog/product'.$customIcon ?>" width="24" height="24"/>
+        </span>
+	<?php endif; ?>
+</div>

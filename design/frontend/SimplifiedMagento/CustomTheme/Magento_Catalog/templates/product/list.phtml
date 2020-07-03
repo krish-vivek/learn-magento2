@@ -95,7 +95,7 @@ $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
                                             <button type="submit"
                                                     title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>"
                                                     class="action tocart primary">
-                                                <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+                                                <span><?= $block->escapeHtml(__('Add to Cart1')) ?></span>
                                             </button>
                                         </form>
                                     <?php else :?>
@@ -110,6 +110,18 @@ $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
                                     <?php if ($addToBlock = $block->getChildBlock('addto')) :?>
                                         <?= $addToBlock->setProduct($_product)->getChildHtml() ?>
                                     <?php endif; ?>
+                                    <?php
+                                        $customIcon = $_product->getResource()->getAttribute('magazinelogo')->getFrontend()->getValue($_product);
+                                        //var_dump(get_class_methods($block));exit;
+                                        $baseurl = $block->getBaseUrl();
+                                        $newurl = dirname($baseurl);
+                                        //$baseurl = str_replace('/'.$this->_storeManager->getDefaultStoreView()->getCode().'/','/', $baseurl);
+                                    ?>
+                                    <?php if (!empty($customIcon)) :?>
+                                    <span>
+                                        <img src="<?= $newurl.'/pub/media/catalog/product'.$customIcon ?>" width="24" height="24"/>
+                                    </span>
+                                <?php endif;?>
                                 </div>
                             </div>
                             <?php if ($showDescription) :?>
